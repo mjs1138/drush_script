@@ -24,11 +24,12 @@ if(!strcmp($local, "local")){
     $target_path = '/portal/vermont/solaris10x86/www/d7data/sites/drush_target_sites.php';
 }
 
-if (file_exists("$target_path/$target_sites")) {
+$filePathName = "$target_path/$target_sites";
+if (file_exists($filePathName)) {
     echo "The file $filename exists\n";
-    $file = fopen("$target_path/$target_sites","r");
+    $file = fopen($filePathName,"r");
 } else {
-    echo "The target-sites file: $filename does not exist\n";
+    echo "The target-sites file: $filePathName does not exist\n";
     exit;
 }
 
