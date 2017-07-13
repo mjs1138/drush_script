@@ -1,6 +1,6 @@
 <?php
 // Select local machine or
-$local = $argv[1];
+$local = @$argv[1];
 if ((strcmp($local, "local") && (strcmp($local, "remote")))) {
     echo("You must choose 'local' or 'remote'\n");
     exit;
@@ -31,8 +31,8 @@ if (file_exists($filePathName)) {
 
     $message = "Are you sure you want to do this [y/N]";
     print $message;
-    flush();
-    ob_flush();
+    @flush();
+    @ob_flush();
     $confirmation = trim(fgets(STDIN));
     if ($confirmation !== 'y') {
         // The user did not say 'y'.
@@ -49,7 +49,7 @@ if (file_exists($filePathName)) {
 
 function ProcessFiles($filePathName, $domain, $root, $execute)
 {
-    $tgtChars = ["'", ";"];
+    $tgtChars = array("'", ";");
     $file = fopen($filePathName, "r");
 
     if (!$execute) {
